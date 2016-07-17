@@ -46,7 +46,7 @@ def startup_pypet():
             return pypet
 
     print "No pypet with that name was found"
-    startup_pypet()
+    return startup_pypet()
 
 
 def pypet_stats(pypet):
@@ -56,7 +56,7 @@ def pypet_stats(pypet):
     if pypet['weight'] > 5:
         print "That's a BIG pypet!"
 
-    if pypet['hungry'] is True:
+    if pypet['hungry']:
         print "Your pypet is hungry!"
     else:
         "Your pypet *BURPS* loudly"
@@ -71,7 +71,8 @@ pypet = startup_pypet()
 
 terminate = False
 
-while terminate is False:
+# while terminate is NOT true
+while not terminate:
     # prints a line
     print "#######################################"
 
@@ -82,15 +83,18 @@ while terminate is False:
     if user_input == "quit":
         terminate = True
 
-    if user_input == "chat":
+    elif user_input == "chat":
         chat_with_pypet(pypet)
 
     # allows user to feed pypet
-    if user_input == "feed":
+    elif user_input == "feed":
         feed_pypet(pypet)
 
-    if user_input == "stats":
+    elif user_input == "stats":
         pypet_stats(pypet)
+
+    else:
+        print "Command not recognized, please try again."
 
 print "You have quit Pypet"
 os.system("say -v Zarvox 'Good bye'")
